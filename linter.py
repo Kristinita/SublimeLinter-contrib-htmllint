@@ -16,11 +16,10 @@ from SublimeLinter.lint import NodeLinter
 class Htmllint(NodeLinter):
     """Provides an interface to htmllint."""
 
-    syntax = 'html'
-    npm_name = 'htmllint-cli'
-    cmd = ('htmllint', '@')
+    defaults = {
+        'selector': 'text.html'
+    }
+    cmd = ['htmllint', '${file}']
     config_file = ('--rc', '.htmllintrc')
-    version_args = '--version'
-    version_re = r'(?P<version>\d+\.\d+\.\d+)'
-    version_requirement = '>= 0.0.7'
     regex = r'^.+: line (?P<line>\d+), col (?P<col>\d+), (?P<message>.+)'
+    tempfile_suffix = '-'
